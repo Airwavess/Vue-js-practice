@@ -48,7 +48,7 @@ var app = new Vue({
     authors: [],
     show_autocomplete: true,
     authors_autocomplete: [],
-    chicked:false
+    chicked: false
   },
   mounted() {
     var self = this
@@ -107,26 +107,17 @@ var app = new Vue({
     },
     get_posts_by_author() {
       if (this.filter.length > 0) {
-        
-        if(this.chicked)
-        {
+        if (this.chicked) {
           this.chicked = false
           return
-        }
-        else
-        {
+        } else {
           this.show_autocomplete = true
         }
-        
         return this.authors.filter((author) => {
           if (author.indexOf(this.filter) != -1) {
             return true
           }
         })
-
-
-
-
       }
     }
   },
@@ -141,7 +132,6 @@ var app = new Vue({
         },
         (response) => {
           this.set_post(response)
-          this.status = true;
         }
       );
     },
@@ -166,6 +156,7 @@ var app = new Vue({
           this.set_post(res)
         })
       } else {
+        this.status = true;
         this.get_author()
       }
     },

@@ -29,25 +29,27 @@
   <div id="content">
     <div id="app" class="container">
       <loading v-if="!status"></loading>
-      <div v-else>
-        <div id="search-group" class="form-group row has-success">
-          <label class="col-lg-2 col-form-label">關鍵字</label>
-          <div class="col-lg-10">
-            <input class="form-control form-control-success" placeholder="請書輸入關鍵字、人名" v-model="filter">
-            <ul class="list-group" v-show="show_autocomplete">
-              <li class="list-group-item list-group-item-action list-group-item-light" v-for="author in get_posts_by_author" @click="filter=author; show_autocomplete=false; chicked=true">{{ author }}</li>
-            </ul>
+      <transition name="slide-fade">
+        <div class="wrapper" :class="{'show-wrapper': status }" v-if="status">
+          <div id="search-group" class="form-group row has-success">
+            <label class="col-lg-2 col-form-label">關鍵字</label>
+            <div class="col-lg-10">
+              <input class="form-control form-control-success" placeholder="請書輸入關鍵字、人名" v-model="filter">
+              <ul class="list-group" v-show="show_autocomplete">
+                <li class="list-group-item list-group-item-action list-group-item-light" v-for="author in get_posts_by_author" @click="filter=author; show_autocomplete=false; chicked=true">{{ author }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>共有{{ filtered_post.length }}篇文章</h5>
+            </div>
+          </div>
+          <div class="row">
+            <postbox class="col-lg-4 col-md-6" v-for="p in filtered_post" v-bind:post="p" :key="p.id"></postbox>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <h5>共有{{ filtered_post.length }}篇文章</h5>
-          </div>
-        </div>
-        <div class="row">
-          <postbox class="col-lg-4 col-md-6" v-for="p in filtered_post" v-bind:post="p" :key="p.id"></postbox>
-        </div>
-      </div>
+      </transition>
     </div>
   </div>
 

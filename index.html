@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="Shortcut Icon" type="image/x-icon" href="img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="og:description" content="你將可以在這個網頁上看到「主顧榮譽書院劇場」的所有文章，以及搜尋關鍵字。">
+  <meta name="author" content="Leo Chiu">
+  <meta property="og:title" content="Providence honor school" />
+  <meta property="og:image" content="http://bookstore.lionfree.net/honor/img/header_bg.jpg" />
+  <meta property="og:url" content="http://bookstore.lionfree.net/honor/" />
+  <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/vue.css">
+  <link rel="stylesheet" href="./css/loading-animation.css">
+  <title>主顧榮譽書院</title>
+</head>
+
+<body>
+  <div id="slide">
+    <div id="text">
+      <h2>Providence honor school</h2>
+      <h2>主顧榮譽書院</h2>
+    </div>
+  </div>
+
+  <div id="content">
+    <div id="app" class="container">
+      <loading v-if="!status"></loading>
+      <div v-else>
+        <div id="search-group" class="form-group row has-success">
+          <label class="col-lg-2 col-form-label">關鍵字</label>
+          <div class="col-lg-10">
+            <input class="form-control form-control-success" placeholder="請書輸入關鍵字、人名" v-model="filter">
+            <ul class="list-group" v-show="show_autocomplete">
+              <li class="list-group-item list-group-item-action list-group-item-light" v-for="author in get_posts_by_author" @click="filter=author; show_autocomplete=false; chicked=true">{{ author }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h5>共有{{ filtered_post.length }}篇文章</h5>
+          </div>
+        </div>
+        <div class="row">
+          <postbox class="col-lg-4 col-md-6" v-for="p in filtered_post" v-bind:post="p" :key="p.id"></postbox>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+          <ul class="list-inline text-center">
+            <li>
+              <a href="https://www.facebook.com/%E4%B8%BB%E9%A1%A7%E6%A6%AE%E8%AD%BD%E6%9B%B8%E9%99%A2%E5%8A%87%E5%A0%B4-170659829952078/?fref=ts">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/Airwavess/Vue-js-practice">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Leo Chiu 2017</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/scrolling parallax.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

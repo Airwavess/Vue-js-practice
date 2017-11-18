@@ -18,12 +18,12 @@ Vue.component('postbox', {
   template: `
     <div class='postbox'>
       <div class='postbox_inner'>
-        <a class='postbox_href' :href='story_url(post.id)'>
+        <a class='postbox_href' :href='story_url(post.id)' target='_blank'>
           <h4 v-html='post.title'></h4>
           <p v-html='post.message'></p>
         </a> 
         <p>Posted by 
-          <strong v-html="post.author"></strong>
+          <strong><em v-html="post.author"></em></strong>
           {{ created_time(post.created_time) }}
         </p>
       </div>
@@ -183,6 +183,27 @@ var app = new Vue({
         }
       })
     },
-
+    outside: function (e) {
+      this.show_autocomplete = false
+    },
+    // inside: function (e) {
+    // }
   },
+  directives: {
+    'click-outside': {
+      bind: function (el, binding, vNode) {
+        // Define Handler and cache it on the element
+        const bubble = binding.modifiers.bubble
+        const handler = (e) => {
+          if (bubble || (!el.contains(e.target) && el !== e.target)) {
+            binding.value(e)
+          }
+        }
+        el.__vueClickOutside__ = handler
+
+        // add Event Listeners
+        document.addEventListener('click', handler)
+      },
+    }
+  }
 })

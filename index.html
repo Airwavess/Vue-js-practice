@@ -6,11 +6,11 @@
   <link rel="Shortcut Icon" type="image/x-icon" href="img/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="og:description" content="你將可以在這個網頁上看到「主顧榮譽書院劇場」的所有文章，以及搜尋關鍵字。">
   <meta name="author" content="Leo Chiu">
   <meta property="og:title" content="Providence honor school" />
-  <meta property="og:image" content="http://bookstore.lionfree.net/honor/img/header_bg.jpg" />
-  <meta property="og:url" content="http://bookstore.lionfree.net/honor/" />
+  <meta property="og:image" content="http://www1.pu.edu.tw/~s1032842/vue-honor-board/img/header_bg.jpg" />
+  <meta property="og:description" content="你將可以在這個網頁上看到「主顧榮譽書院劇場」的所有文章，以及利用人名、關鍵字搜尋成功故事。">
+  <meta property="og:url" content=" http://www1.pu.edu.tw/~s1032842/vue-honor-board/" />
   <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/vue.css">
@@ -34,20 +34,23 @@
           <div id="search-group" class="form-group row has-success">
             <label class="col-lg-2 col-form-label">關鍵字</label>
             <div class="col-lg-10">
-              <input class="form-control form-control-success" placeholder="請書輸入關鍵字、人名" v-model="filter">
-              <ul class="list-group" v-show="show_autocomplete">
-                <li class="list-group-item list-group-item-action list-group-item-light" v-for="author in get_posts_by_author" @click="filter=author; show_autocomplete=false; chicked=true">{{ author }}</li>
-              </ul>
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input class="form-control" placeholder="請書輸入關鍵字、人名" v-model="filter">
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <h5>共有{{ filtered_post.length }}篇文章</h5>
+          <ul class="list-group col-lg-10 offset-lg-2" v-show="show_autocomplete"  v-click-outside="outside">
+            <li class="list-group-item list-group-item-action list-group-item-light" v-for="author in get_posts_by_author" @click="filter=author; show_autocomplete=false; chicked=true">{{ author }}</li>
+          </ul>
+          <section>
+            <div class="row">
+              <div class="col-sm-12">
+                <h5>共有{{ filtered_post.length }}篇文章</h5>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <postbox class="col-lg-4 col-md-6" v-for="p in filtered_post" v-bind:post="p" :key="p.id"></postbox>
-          </div>
+            <div class="row">
+              <postbox class="col-lg-4 col-md-6" v-for="p in filtered_post" v-bind:post="p" :key="p.id"></postbox>
+            </div>
+          </section>
         </div>
       </transition>
     </div>
@@ -80,8 +83,8 @@
       </div>
     </div>
   </footer>
-  <script src="js/vue.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <!-- <script src="js/vue.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script type="text/javascript" src="./js/scrolling parallax.js"></script>
   <script src="./js/main.js"></script>

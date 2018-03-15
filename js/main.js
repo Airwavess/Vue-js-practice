@@ -123,7 +123,7 @@ var app = new Vue({
   },
   methods: {
     get_post() {
-      var accessToken = "EAAMSD3liJvYBAF7yMIUMRp4hmnMPJR7amFEU3HP96FmYkdJsKjkWNMik54VpLX9A2c6ZCQiVv4fJZCDx4ta8vmNDazZAWOvfnIJJ4p2t8W9FaNWkjo5aELtPC1rrkp6uwowqW8zElqo1khi6WkZCHMkIFY7JddbPiZBmZCBcatQQZDZD"
+      var accessToken = "EAACEdEose0cBAGyOhXw9SmS0bay3nZBHMTLj9nz6ynThAwIfCOxa077m4fw95pjP1NzSZCmDjnITpL782lzodmH4UD3wQUTXr3z7ByOWOXpTkRhvZBKlnuSNIkXCZAq9FZAUtGpKjNPpO4OWHMXi410IyRQuaMoqD2INJ2XLsCRTZBdZCWsy49gBQjElCyPLQOaZCQmJBSQ4XwZDZD"
       FB.api(
         '/170659829952078/posts?fields=message,likes,created_time,id',
         'GET', {
